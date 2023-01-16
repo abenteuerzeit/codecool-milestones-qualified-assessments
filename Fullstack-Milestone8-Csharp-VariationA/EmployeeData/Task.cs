@@ -90,13 +90,12 @@ namespace CSharpMilestone
         /// </summary>
         /// <param name="employees"></param>
         /// <returns></returns>
-    public static EmployeeRole GetRoleWithLeastEmployees(IEnumerable<Employee> employees)
-    {
-        var roleCounts = employees
-            .GroupBy(x => x.Role)
-            .OrderBy(y => y.Count());
-        return roleCounts.First().Key;
-    }
+        public static EmployeeRole GetRoleWithLeastEmployees(IEnumerable<Employee> employees)
+        {
+            var groupByRole = employees.GroupBy(x => x.Role);
+            var minCount = groupByRole.Min(x => x.Count());
+            return groupByRole.First(x => x.Count() == minCount).Key;
+        }
 
 
         /// <summary>
