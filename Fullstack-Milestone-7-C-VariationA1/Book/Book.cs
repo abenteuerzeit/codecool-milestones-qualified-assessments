@@ -1,35 +1,22 @@
-using System;
 namespace CSharpMilestone
 {
     public class Book
     {
-        public string Title {get; set;}
-        public string Author {get; set;}
-        public int Pages {get; set;}
-        public int StarRating {get; set;}
-        
+        public string Title { get; }
+        public string Author { get; }
+        public int Pages { get; }
+        public int StarRating { get; }
+
         public Book(string title, string author, int pages, int starRating)
         {
-            this.Title = title;
-            this.Author = author;
-            this.Pages = pages;
-            this.StarRating = starRating;
+            Title = title;
+            Author = author;
+            Pages = pages;
+            StarRating = starRating;
         }
-        
-        public string GetDisplayInfo()
-        {            
-            string rating = "";
-            for (int i = 0; i < this.StarRating; i++ )
-            {
-                rating += '*';
-            }
-            return $"{this.Title} by {this.Author} - {this.Pages} pages - Rating: {rating}";
-        }
-        
-        public double GetReadTime(int pagesPerMinute)
-        {
-            return (double)Decimal.Divide(this.Pages, pagesPerMinute);
-        }
-   
+
+        public string GetDisplayInfo() => $"{Title} by {Author} - {Pages} pages - Rating: {new string('*', StarRating)}";
+
+        public double GetReadTime(int pagesPerMinute) => Pages / (double)pagesPerMinute;
     }
 }
