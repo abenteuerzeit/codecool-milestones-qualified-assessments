@@ -19,36 +19,53 @@ namespace CSharpMilestone
     {
         public Dog(string name, string breed) : base(name, breed) { }
         public override string GetPetSound() => "Woof";
-        public override PetFeedingStatus Feed(PetFood food, int amount) => food == PetFood.Meat 
-            ? (amount >= 5  ? PetFeedingStatus.FullyFed : PetFeedingStatus.StillHungry) 
-            : PetFeedingStatus.WrongFood;
+        public override PetFeedingStatus Feed(PetFood food, int amount)
+        {
+            if (food != PetFood.Meat) 
+            { 
+                return PetFeedingStatus.WrongFood;
+            }
+            return amount >= 5 ? PetFeedingStatus.FullyFed : PetFeedingStatus.StillHungry;
+        }
     }
 
     public class Cat : Pet
     {
         public Cat(string name, string breed) : base(name, breed) { }
         public override string GetPetSound() => "Meow";
-        public override PetFeedingStatus Feed(PetFood food, int amount) => 
-        food == PetFood.Meat 
-            ? (amount >= 2 ? PetFeedingStatus.FullyFed : PetFeedingStatus.StillHungry) 
-            : PetFeedingStatus.WrongFood;
+        public override PetFeedingStatus Feed(PetFood food, int amount)
+        {
+            if (food != PetFood.Meat) 
+            { 
+                return PetFeedingStatus.WrongFood;
+            }
+            return amount >= 2 ? PetFeedingStatus.FullyFed : PetFeedingStatus.StillHungry;
+        }
     }
 
     public class Parrot : Pet
     {
         public Parrot(string name, string breed) : base(name, breed) { }
         public override string GetPetSound() => "Squawk";
-        public override PetFeedingStatus Feed(PetFood food, int amount) => 
-            (food == PetFood.Meat && amount >= 2) || (food == PetFood.Grain && amount >= 4) 
-            ? PetFeedingStatus.FullyFed : PetFeedingStatus.WrongFood;
+        public override PetFeedingStatus Feed(PetFood food, int amount)
+        {
+            switch (food)
+            {
+                case PetFood.Meat:
+                    return amount >= 2 ? PetFeedingStatus.FullyFed : PetFeedingStatus.StillHungry;
+                case PetFood.Grain:
+                    return amount >= 4 ? PetFeedingStatus.FullyFed : PetFeedingStatus.StillHungry;
+                default:
+                    return PetFeedingStatus.WrongFood;
+            }
+        }
     }
 
     public sealed class TalkingParrot : Parrot
     {
         public TalkingParrot(string name, string breed) : base(name, breed) { }
         public override string GetPetSound() => "Hello";
-        public override PetFeedingStatus Feed(PetFood food, int amount) => food != PetFood.Meat 
-            ? base.Feed(food, amount) : PetFeedingStatus.WrongFood;
+        public override PetFeedingStatus Feed(PetFood food, int amount) => food != PetFood.Meat ? base.Feed(food, amount) : PetFeedingStatus.WrongFood;
     }
 
     public enum PetFood
