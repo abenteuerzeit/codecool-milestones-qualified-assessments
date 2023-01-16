@@ -56,7 +56,7 @@
     c. Inconclusive
     **&rarr; Unsupported**
 
-10. You have two `List<int>` objects: expectedList and actualList. You want to test whether the two lists contain the same elements, regardless of their order.
+10. You have two `List<int>` objects: `expectedList` and `actualList`. You want to test whether the two lists contain the same elements, regardless of their order.
 
 **Which testing method you should use?**
     a. `Assert.AreEqual(expectedList, actualList)`
