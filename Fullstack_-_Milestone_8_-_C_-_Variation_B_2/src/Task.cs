@@ -80,15 +80,15 @@ namespace CSharpMilestone
             => meals.Where(m => m.MealType == mealType).Average(m => m.Price);
 
         /// <summary>
-        ///     return the type of meal with the greatest number of meals
+        ///     return the meal type meal that has the greatest number of meals in all Diners. 
+        ///     if there is a tie between two or more meal types, return the first one in the list.
         /// </summary>
         /// <param name="meals"></param>
         /// <returns></returns>
-        public static MealType GetTypeWithMostMeals(IEnumerable<Meal> meals) => 
-            meals.GroupBy(meal => meal.MealType)
-            .OrderByDescending(group => group.Count())
-            .Select(group => group.Key)
-            .FirstOrDefault();
+        public static MealType GetTypeWithMostMeals(IEnumerable<Meal> meals) =>
+            Enum.GetValues(typeof(MealType)).Cast<MealType>()
+            .ToDictionary(mt => mt, mt => meals.Count(m => m.MealType == mt))
+            .OrderByDescending(kvp => kvp.Value).First().Key;
 
         /// <summary>
         ///     Get the most expensive diner
