@@ -9,8 +9,8 @@
 
 2. **What does TDD stand for?**
 
-    **&rarr; Test Driven Design**
-    b. Test Driven Development
+    a. Test Driven Design
+    **&rarr; Test Driven Development**
     c. Test Data Domain
     d. Test Data Development
 
