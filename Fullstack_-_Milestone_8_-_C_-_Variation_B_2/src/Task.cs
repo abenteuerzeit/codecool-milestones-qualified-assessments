@@ -80,8 +80,7 @@ namespace CSharpMilestone
             => meals.Where(m => m.MealType == mealType).Average(m => m.Price);
 
         /// <summary>
-        ///     return the meal type meal that has the greatest number of meals in all Diners. 
-        ///     if there is a tie between two or more meal types, return the first one in the list.
+        ///     return the meal type meal that has the greatest number of meals 
         /// </summary>
         /// <param name="meals"></param>
         /// <returns></returns>
